@@ -54,8 +54,8 @@
             50% { opacity: 0.8; }
         }
 
-        /* Login Screen */
-        .login-screen {
+        /* Welcome Screen */
+        .welcome-screen {
             position: fixed;
             top: 0;
             left: 0;
@@ -69,12 +69,12 @@
             transition: var(--transition-smooth);
         }
 
-        .login-screen.hidden {
+        .welcome-screen.hidden {
             opacity: 0;
             pointer-events: none;
         }
 
-        .login-container {
+        .welcome-container {
             background: var(--bg-secondary);
             border: 2px solid var(--border-color);
             border-radius: 20px;
@@ -86,7 +86,7 @@
             overflow: hidden;
         }
 
-        .login-container::before {
+        .welcome-container::before {
             content: '';
             position: absolute;
             top: 0;
@@ -113,6 +113,179 @@
             color: var(--text-secondary);
             margin-bottom: 30px;
             font-size: 0.9rem;
+        }
+
+        /* Saved Playlist Card */
+        .saved-playlist {
+            background: var(--bg-tertiary);
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            transition: var(--transition-smooth);
+        }
+
+        .saved-playlist:hover {
+            border-color: var(--accent-primary);
+            transform: translateY(-2px);
+        }
+
+        .saved-playlist-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 12px;
+        }
+
+        .saved-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--accent-gradient);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .saved-info h3 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.1rem;
+            margin-bottom: 4px;
+        }
+
+        .saved-info p {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .saved-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn-primary, .btn-secondary, .btn-danger {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            font-weight: 500;
+        }
+
+        .btn-primary {
+            background: var(--accent-gradient);
+            color: var(--text-primary);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-glow);
+        }
+
+        .btn-secondary {
+            background: var(--bg-tertiary);
+            color: var(--text-secondary);
+            border: 2px solid var(--border-color);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--accent-primary);
+            color: var(--accent-primary);
+        }
+
+        .btn-danger {
+            background: transparent;
+            color: #ff4444;
+            border: 2px solid #ff4444;
+        }
+
+        .btn-danger:hover {
+            background: rgba(255, 68, 68, 0.1);
+        }
+
+        .divider {
+            text-align: center;
+            margin: 25px 0;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            position: relative;
+        }
+
+        .divider::before,
+        .divider::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 40%;
+            height: 1px;
+            background: var(--border-color);
+        }
+
+        .divider::before { left: 0; }
+        .divider::after { right: 0; }
+
+        /* Login Screen */
+        .login-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            background: var(--bg-primary);
+            transition: var(--transition-smooth);
+        }
+
+        .login-screen.active {
+            display: flex;
+        }
+
+        .login-container {
+            background: var(--bg-secondary);
+            border: 2px solid var(--border-color);
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 500px;
+            width: 90%;
+            box-shadow: var(--shadow-glow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .login-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--accent-gradient);
+        }
+
+        .back-btn {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: var(--bg-tertiary);
+            border: 2px solid var(--border-color);
+            padding: 8px 16px;
+            border-radius: 8px;
+            color: var(--text-secondary);
+            cursor: pointer;
+            font-family: 'IBM Plex Mono', monospace;
+            transition: var(--transition-smooth);
+        }
+
+        .back-btn:hover {
+            border-color: var(--accent-primary);
+            color: var(--accent-primary);
         }
 
         .tab-selector {
@@ -185,6 +358,25 @@
             outline: none;
             border-color: var(--accent-primary);
             box-shadow: 0 0 10px rgba(0, 240, 255, 0.2);
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 15px 0;
+        }
+
+        .checkbox-group input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+        }
+
+        .checkbox-group label {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            cursor: pointer;
         }
 
         .login-btn {
@@ -610,11 +802,31 @@
 <body>
     <div class="bg-animation"></div>
 
+    <!-- Welcome Screen (Shows saved playlist option) -->
+    <div class="welcome-screen" id="welcomeScreen">
+        <div class="welcome-container">
+            <h1 class="login-logo">STREAMVAULT</h1>
+            <p class="login-subtitle">Advanced IPTV Player System</p>
+
+            <div id="savedPlaylistSection" style="display: none;">
+                <!-- Saved playlist will be inserted here -->
+            </div>
+
+            <div class="divider">OR</div>
+
+            <button class="btn-primary" onclick="showLoginScreen()" style="width: 100%;">
+                ➕ Add New Playlist
+            </button>
+        </div>
+    </div>
+
     <!-- Login Screen -->
     <div class="login-screen" id="loginScreen">
         <div class="login-container">
+            <button class="back-btn" onclick="showWelcomeScreen()">← Back</button>
+            
             <h1 class="login-logo">STREAMVAULT</h1>
-            <p class="login-subtitle">Advanced IPTV Player System</p>
+            <p class="login-subtitle">Connect Your IPTV Service</p>
 
             <div class="tab-selector">
                 <button class="tab-btn active" onclick="switchLoginTab('xtreme')">Xtreme Codes</button>
@@ -635,6 +847,10 @@
                     <label class="form-label">Password</label>
                     <input type="password" class="form-input" id="xtremePassword" placeholder="Your password" required>
                 </div>
+                <div class="checkbox-group">
+                    <input type="checkbox" id="rememberXtreme" checked>
+                    <label for="rememberXtreme">Remember my credentials</label>
+                </div>
                 <button type="submit" class="login-btn">Connect</button>
             </form>
 
@@ -643,6 +859,10 @@
                 <div class="form-group">
                     <label class="form-label">M3U Playlist URL</label>
                     <input type="url" class="form-input" id="m3uUrl" placeholder="http://example.com/playlist.m3u" required>
+                </div>
+                <div class="checkbox-group">
+                    <input type="checkbox" id="rememberM3U" checked>
+                    <label for="rememberM3U">Remember my playlist</label>
                 </div>
                 <button type="submit" class="login-btn">Load Playlist</button>
             </form>
@@ -718,6 +938,92 @@
             hls: null
         };
 
+        // Initialize on page load
+        window.addEventListener('DOMContentLoaded', () => {
+            checkSavedCredentials();
+        });
+
+        // Check for saved credentials
+        function checkSavedCredentials() {
+            const savedCreds = localStorage.getItem('iptvCredentials');
+            
+            if (savedCreds) {
+                const creds = JSON.parse(savedCreds);
+                displaySavedPlaylist(creds);
+            }
+        }
+
+        // Display saved playlist option
+        function displaySavedPlaylist(creds) {
+            const section = document.getElementById('savedPlaylistSection');
+            section.style.display = 'block';
+            
+            const displayName = creds.type === 'xtreme' 
+                ? creds.username || 'Xtreme Codes' 
+                : 'M3U Playlist';
+            
+            const displayDetail = creds.type === 'xtreme'
+                ? creds.server || ''
+                : creds.url ? new URL(creds.url).hostname : '';
+            
+            section.innerHTML = `
+                <div class="saved-playlist">
+                    <div class="saved-playlist-header">
+                        <div class="saved-icon">📺</div>
+                        <div class="saved-info">
+                            <h3>${displayName}</h3>
+                            <p>${displayDetail}</p>
+                        </div>
+                    </div>
+                    <div class="saved-actions">
+                        <button class="btn-primary" onclick="loadSavedPlaylist()">
+                            ▶️ Continue Watching
+                        </button>
+                        <button class="btn-danger" onclick="clearSavedPlaylist()">
+                            🗑️ Remove
+                        </button>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Load saved playlist
+        function loadSavedPlaylist() {
+            const savedCreds = localStorage.getItem('iptvCredentials');
+            if (savedCreds) {
+                const creds = JSON.parse(savedCreds);
+                appState.credentials = creds;
+                
+                showLoading();
+                
+                if (creds.type === 'xtreme') {
+                    loadXtremeChannels(creds.server, creds.username, creds.password);
+                } else {
+                    loadM3UPlaylist(creds.url);
+                }
+            }
+        }
+
+        // Clear saved playlist
+        function clearSavedPlaylist() {
+            if (confirm('Are you sure you want to remove this saved playlist?')) {
+                localStorage.removeItem('iptvCredentials');
+                document.getElementById('savedPlaylistSection').style.display = 'none';
+            }
+        }
+
+        // Show login screen
+        function showLoginScreen() {
+            document.getElementById('welcomeScreen').classList.add('hidden');
+            document.getElementById('loginScreen').classList.add('active');
+        }
+
+        // Show welcome screen
+        function showWelcomeScreen() {
+            document.getElementById('loginScreen').classList.remove('active');
+            document.getElementById('welcomeScreen').classList.remove('hidden');
+        }
+
         // Login Tab Switching
         function switchLoginTab(type) {
             appState.loginType = type;
@@ -736,13 +1042,21 @@
             const server = document.getElementById('xtremeServer').value.trim();
             const username = document.getElementById('xtremeUsername').value.trim();
             const password = document.getElementById('xtremePassword').value.trim();
+            const remember = document.getElementById('rememberXtreme').checked;
 
             appState.credentials = { server, username, password, type: 'xtreme' };
             
-            showLoading();
+            if (remember) {
+                localStorage.setItem('iptvCredentials', JSON.stringify(appState.credentials));
+            }
             
+            showLoading();
+            await loadXtremeChannels(server, username, password);
+        }
+
+        // Load Xtreme Codes channels
+        async function loadXtremeChannels(server, username, password) {
             try {
-                // Fetch live streams
                 const liveUrl = `${server}/player_api.php?username=${username}&password=${password}&action=get_live_streams`;
                 const response = await fetch(liveUrl);
                 const data = await response.json();
@@ -758,21 +1072,7 @@
                         epgChannelId: channel.epg_channel_id || null
                     }));
                     
-                    // Extract unique categories
-                    const categoryMap = new Map();
-                    data.forEach(channel => {
-                        if (channel.category_id && !categoryMap.has(channel.category_id)) {
-                            categoryMap.set(channel.category_id, {
-                                id: channel.category_id,
-                                name: channel.category_name || 'Uncategorized'
-                            });
-                        }
-                    });
-                    appState.categories = Array.from(categoryMap.values());
-                    
-                    // Fetch EPG data
-                    await fetchEPG();
-                    
+                    extractCategories();
                     initializeApp();
                 } else {
                     alert('Invalid credentials or no channels available');
@@ -790,10 +1090,20 @@
             event.preventDefault();
             
             const m3uUrl = document.getElementById('m3uUrl').value.trim();
+            const remember = document.getElementById('rememberM3U').checked;
+            
             appState.credentials = { url: m3uUrl, type: 'm3u' };
             
-            showLoading();
+            if (remember) {
+                localStorage.setItem('iptvCredentials', JSON.stringify(appState.credentials));
+            }
             
+            showLoading();
+            await loadM3UPlaylist(m3uUrl);
+        }
+
+        // Load M3U Playlist
+        async function loadM3UPlaylist(m3uUrl) {
             try {
                 const response = await fetch(m3uUrl);
                 const m3uText = await response.text();
@@ -801,18 +1111,7 @@
                 appState.channels = parseM3U(m3uText);
                 
                 if (appState.channels.length > 0) {
-                    // Extract categories from parsed channels
-                    const categoryMap = new Map();
-                    appState.channels.forEach(channel => {
-                        if (!categoryMap.has(channel.categoryName)) {
-                            categoryMap.set(channel.categoryName, {
-                                id: channel.categoryName,
-                                name: channel.categoryName
-                            });
-                        }
-                    });
-                    appState.categories = Array.from(categoryMap.values());
-                    
+                    extractCategories();
                     initializeApp();
                 } else {
                     alert('No channels found in playlist');
@@ -856,25 +1155,28 @@
             return channels;
         }
 
-        // Fetch EPG Data
-        async function fetchEPG() {
-            if (appState.credentials.type !== 'xtreme') return;
-            
-            try {
-                const { server, username, password } = appState.credentials;
-                const epgUrl = `${server}/player_api.php?username=${username}&password=${password}&action=get_simple_data_table&stream_id=`;
+        // Extract categories from channels
+        function extractCategories() {
+            const categoryMap = new Map();
+            appState.channels.forEach(channel => {
+                const catKey = channel.category || channel.categoryName;
+                const catName = channel.categoryName || 'Uncategorized';
                 
-                // Note: Full EPG implementation would require fetching for each channel
-                // This is a simplified version
-                appState.epgData = {};
-            } catch (error) {
-                console.error('EPG fetch error:', error);
-            }
+                if (!categoryMap.has(catKey)) {
+                    categoryMap.set(catKey, {
+                        id: catKey,
+                        name: catName
+                    });
+                }
+            });
+            appState.categories = Array.from(categoryMap.values());
         }
 
         // Initialize App
         function initializeApp() {
-            document.getElementById('loginScreen').classList.add('hidden');
+            document.getElementById('welcomeScreen').classList.add('hidden');
+            document.getElementById('loginScreen').classList.remove('active');
+            
             setTimeout(() => {
                 document.getElementById('appContainer').classList.add('active');
                 renderCategories();
@@ -909,7 +1211,9 @@
             appState.categories.forEach(category => {
                 const item = document.createElement('li');
                 item.className = 'channel-item';
-                const channelCount = appState.channels.filter(ch => ch.category === category.id || ch.categoryName === category.name).length;
+                const channelCount = appState.channels.filter(ch => 
+                    ch.category === category.id || ch.categoryName === category.name
+                ).length;
                 
                 item.innerHTML = `
                     <div class="channel-logo">${category.name.substring(0, 2).toUpperCase()}</div>
@@ -952,7 +1256,7 @@
                         <div class="channel-name">${channel.name}</div>
                         <div class="channel-category">${channel.categoryName}</div>
                     </div>
-                    <button class="favorite-btn ${isFavorite ? 'active' : ''}" onclick="toggleFavorite(event, ${channel.id})">
+                    <button class="favorite-btn ${isFavorite ? 'active' : ''}" onclick="toggleFavorite(event, '${channel.id}')">
                         ${isFavorite ? '★' : '☆'}
                     </button>
                 `;
@@ -1023,7 +1327,6 @@
                 });
             }
             
-            // Load EPG for channel
             loadEPGForChannel(channel);
         }
 
@@ -1031,7 +1334,7 @@
         function loadEPGForChannel(channel) {
             const epgContent = document.getElementById('epgContent');
             
-            // Mock EPG data (in production, fetch real EPG data)
+            // Mock EPG data
             const mockEPG = [
                 {
                     time: '20:00 - 21:00',
@@ -1081,7 +1384,11 @@
         function toggleFavorite(event, channelId) {
             event.stopPropagation();
             
-            const index = appState.favorites.indexOf(channelId);
+            // Convert to string for comparison
+            channelId = String(channelId);
+            const stringFavorites = appState.favorites.map(String);
+            const index = stringFavorites.indexOf(channelId);
+            
             if (index > -1) {
                 appState.favorites.splice(index, 1);
             } else {
@@ -1094,7 +1401,9 @@
 
         // Toggle Favorites View
         function toggleFavorites() {
-            const favoriteChannels = appState.channels.filter(ch => appState.favorites.includes(ch.id));
+            const favoriteChannels = appState.channels.filter(ch => 
+                appState.favorites.map(String).includes(String(ch.id))
+            );
             
             if (favoriteChannels.length === 0) {
                 alert('No favorite channels yet. Add some by clicking the star icon!');
@@ -1114,7 +1423,7 @@
                         <div class="channel-name">${channel.name}</div>
                         <div class="channel-category">${channel.categoryName}</div>
                     </div>
-                    <button class="favorite-btn active" onclick="toggleFavorite(event, ${channel.id})">★</button>
+                    <button class="favorite-btn active" onclick="toggleFavorite(event, '${channel.id}')">★</button>
                 `;
                 
                 item.onclick = (e) => {
@@ -1147,7 +1456,7 @@
                 
                 document.getElementById('appContainer').classList.remove('active');
                 setTimeout(() => {
-                    document.getElementById('loginScreen').classList.remove('hidden');
+                    showWelcomeScreen();
                 }, 300);
             }
         }
