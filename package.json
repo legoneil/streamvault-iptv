@@ -1,0 +1,18 @@
+{
+  "name": "streamvault-iptv-player",
+  "version": "1.0.0",
+  "description": "Advanced IPTV Player with Xtreme Codes and M3U support",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "keywords": ["iptv", "streaming", "player", "xtreme-codes", "m3u"],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}
