@@ -779,22 +779,293 @@
 
         /* Responsive */
         @media (max-width: 768px) {
+            /* Login/Welcome screens - better mobile sizing */
+            .welcome-container,
+            .login-container {
+                padding: 30px 20px;
+                width: 95%;
+                max-width: none;
+            }
+            
+            .login-logo {
+                font-size: 2rem;
+            }
+            
+            .login-subtitle {
+                font-size: 0.85rem;
+            }
+            
+            .form-input {
+                font-size: 16px; /* Prevents zoom on iOS */
+            }
+            
+            /* Header adjustments */
+            .header {
+                height: 60px;
+                padding: 0 15px;
+            }
+            
+            .header-logo {
+                font-size: 1.2rem;
+            }
+            
+            .header-search {
+                display: none; /* Hide search on mobile */
+            }
+            
+            .header-controls {
+                gap: 8px;
+            }
+            
+            .header-btn {
+                padding: 6px 12px;
+                font-size: 0.75rem;
+            }
+            
+            /* Sidebar - slide in from left */
             .sidebar {
                 width: 100%;
+                max-width: 320px;
                 transform: translateX(-100%);
                 transition: transform 0.3s ease;
+                z-index: 200;
+                top: 60px; /* Adjusted for mobile header */
             }
-
+            
             .sidebar.mobile-open {
                 transform: translateX(0);
+                box-shadow: 4px 0 20px rgba(0, 0, 0, 0.5);
             }
-
+            
+            /* Player container - full width on mobile */
             .player-container {
                 left: 0;
+                top: 60px; /* Adjusted for mobile header */
             }
-
-            .header-search {
+            
+            /* Video wrapper - better aspect ratio */
+            .video-wrapper {
+                min-height: 250px;
+            }
+            
+            .video-title {
+                font-size: 1.2rem;
+            }
+            
+            .video-subtitle {
+                font-size: 0.8rem;
+            }
+            
+            /* EPG panel - shorter on mobile */
+            .epg-panel {
+                height: 180px;
+                padding: 15px;
+            }
+            
+            .epg-header {
+                font-size: 0.95rem;
+                margin-bottom: 10px;
+            }
+            
+            .epg-item {
+                padding: 10px;
+            }
+            
+            /* Channel items - better touch targets */
+            .channel-item {
+                padding: 15px 12px;
+                margin-bottom: 10px;
+            }
+            
+            .channel-logo {
+                width: 45px;
+                height: 45px;
+            }
+            
+            .channel-name {
+                font-size: 0.9rem;
+            }
+            
+            .channel-category {
+                font-size: 0.7rem;
+            }
+            
+            .favorite-btn {
+                font-size: 1.4rem;
+                padding: 5px;
+            }
+            
+            /* Sidebar sections */
+            .sidebar-section {
+                padding: 15px;
+            }
+            
+            .section-title {
+                font-size: 0.85rem;
+            }
+            
+            /* Saved playlist card */
+            .saved-playlist {
+                padding: 15px;
+            }
+            
+            .saved-icon {
+                width: 45px;
+                height: 45px;
+            }
+            
+            .saved-info h3 {
+                font-size: 1rem;
+            }
+            
+            .saved-actions {
+                flex-direction: column;
+            }
+            
+            .btn-primary,
+            .btn-secondary,
+            .btn-danger {
+                padding: 12px;
+                font-size: 0.85rem;
+            }
+            
+            /* Tab selector */
+            .tab-btn {
+                font-size: 0.8rem;
+                padding: 10px 8px;
+            }
+            
+            /* Back button */
+            .back-btn {
+                top: 15px;
+                left: 15px;
+                font-size: 0.8rem;
+            }
+        }
+        
+        /* Small phones */
+        @media (max-width: 480px) {
+            .login-logo {
+                font-size: 1.8rem;
+            }
+            
+            .header {
+                height: 55px;
+                padding: 0 10px;
+            }
+            
+            .header-logo {
+                font-size: 1rem;
+            }
+            
+            .header-btn {
+                padding: 5px 10px;
+                font-size: 0.7rem;
+            }
+            
+            .sidebar {
+                max-width: 280px;
+                top: 55px;
+            }
+            
+            .player-container {
+                top: 55px;
+            }
+            
+            .video-wrapper {
+                min-height: 220px;
+            }
+            
+            .video-title {
+                font-size: 1rem;
+            }
+            
+            .video-info {
+                padding: 15px;
+            }
+            
+            .epg-panel {
+                height: 150px;
+                padding: 10px;
+            }
+            
+            .channel-logo {
+                width: 40px;
+                height: 40px;
+            }
+            
+            .saved-icon {
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
+            }
+        }
+        
+        /* Landscape phones */
+        @media (max-width: 768px) and (orientation: landscape) {
+            .video-wrapper {
+                min-height: 100%;
+            }
+            
+            .epg-panel {
+                display: none; /* Hide EPG in landscape for more video space */
+            }
+        }
+        
+        /* Add mobile menu toggle button */
+        @media (max-width: 768px) {
+            .mobile-menu-toggle {
+                display: block;
+                position: fixed;
+                bottom: 20px;
+                left: 20px;
+                width: 60px;
+                height: 60px;
+                background: var(--accent-gradient);
+                border: none;
+                border-radius: 50%;
+                color: white;
+                font-size: 1.5rem;
+                cursor: pointer;
+                box-shadow: 0 4px 20px rgba(0, 240, 255, 0.4);
+                z-index: 150;
+                transition: var(--transition-smooth);
+            }
+            
+            .mobile-menu-toggle:active {
+                transform: scale(0.95);
+            }
+            
+            /* Hide when sidebar is open */
+            .sidebar.mobile-open ~ .mobile-menu-toggle {
+                opacity: 0.5;
+            }
+            
+            /* Overlay when sidebar is open */
+            .mobile-overlay {
                 display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: rgba(0, 0, 0, 0.7);
+                z-index: 150;
+            }
+            
+            .mobile-overlay.active {
+                display: block;
+            }
+        }
+        
+        /* Desktop - hide mobile elements */
+        @media (min-width: 769px) {
+            .mobile-menu-toggle {
+                display: none;
+            }
+            
+            .mobile-overlay {
+                display: none !important;
             }
         }
     </style>
@@ -871,6 +1142,9 @@
 
     <!-- Main App -->
     <div class="app-container" id="appContainer">
+        <!-- Mobile Overlay -->
+        <div class="mobile-overlay" id="mobileOverlay" onclick="closeMobileMenu()"></div>
+        
         <!-- Header -->
         <header class="header">
             <div class="header-logo">STREAMVAULT</div>
@@ -922,6 +1196,11 @@
                 </div>
             </div>
         </div>
+        
+        <!-- Mobile Menu Toggle -->
+        <button class="mobile-menu-toggle" id="mobileMenuToggle" onclick="toggleMobileMenu()">
+            ☰
+        </button>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
@@ -1062,10 +1341,16 @@
                 const data = await response.json();
                 
                 if (data && Array.isArray(data)) {
+                    console.log('=== RAW API RESPONSE ===');
+                    console.log('First channel from API:', data[0]);
+                    
                     appState.channels = data.map(channel => ({
                         id: channel.stream_id,
                         name: channel.name,
+                        // Keep ALL category-related fields
+                        category_id: channel.category_id,
                         category: channel.category_id,
+                        category_name: channel.category_name,
                         categoryName: channel.category_name || 'Uncategorized',
                         logo: channel.stream_icon || '',
                         url: `${server}/live/${username}/${password}/${channel.stream_id}.m3u8`,
@@ -1158,9 +1443,28 @@
         // Extract categories from channels
         function extractCategories() {
             const categoryMap = new Map();
-            appState.channels.forEach(channel => {
-                const catKey = channel.category || channel.categoryName;
-                const catName = channel.categoryName || 'Uncategorized';
+            
+            // Debug: log first few channels to see structure
+            console.log('=== EXTRACTING CATEGORIES ===');
+            console.log('Total channels:', appState.channels.length);
+            console.log('First 5 channels:', appState.channels.slice(0, 5));
+            
+            appState.channels.forEach((channel, index) => {
+                const catKey = channel.category_id || channel.category || channel.categoryName || 'Uncategorized';
+                const catName = channel.category_name || channel.categoryName || 'Uncategorized';
+                
+                // Debug first few
+                if (index < 5) {
+                    console.log(`Channel ${index}:`, {
+                        name: channel.name,
+                        category_id: channel.category_id,
+                        category: channel.category,
+                        category_name: channel.category_name,
+                        categoryName: channel.categoryName,
+                        computed_key: catKey,
+                        computed_name: catName
+                    });
+                }
                 
                 if (!categoryMap.has(catKey)) {
                     categoryMap.set(catKey, {
@@ -1169,7 +1473,9 @@
                     });
                 }
             });
+            
             appState.categories = Array.from(categoryMap.values());
+            console.log('Extracted categories:', appState.categories);
         }
 
         // Initialize App
@@ -1190,6 +1496,9 @@
             const categoryList = document.getElementById('categoryList');
             categoryList.innerHTML = '';
             
+            console.log('=== RENDERING CATEGORIES ===');
+            console.log('Total categories:', appState.categories.length);
+            
             // Add "All Channels" option
             const allItem = document.createElement('li');
             allItem.className = 'channel-item active';
@@ -1203,7 +1512,7 @@
             allItem.onclick = () => {
                 document.querySelectorAll('#categoryList .channel-item').forEach(el => el.classList.remove('active'));
                 allItem.classList.add('active');
-                renderChannels();
+                renderChannels(null);
             };
             categoryList.appendChild(allItem);
             
@@ -1211,9 +1520,17 @@
             appState.categories.forEach(category => {
                 const item = document.createElement('li');
                 item.className = 'channel-item';
-                const channelCount = appState.channels.filter(ch => 
-                    ch.category === category.id || ch.categoryName === category.name
-                ).length;
+                
+                // Count channels with comprehensive field checking
+                const filterStr = String(category.id);
+                const channelCount = appState.channels.filter(ch => {
+                    return String(ch.category_id) === filterStr ||
+                           String(ch.category) === filterStr ||
+                           String(ch.category_name) === filterStr ||
+                           String(ch.categoryName) === filterStr;
+                }).length;
+                
+                console.log(`Category "${category.name}" (ID: ${category.id}): ${channelCount} channels`);
                 
                 item.innerHTML = `
                     <div class="channel-logo">${category.name.substring(0, 2).toUpperCase()}</div>
@@ -1222,11 +1539,15 @@
                         <div class="channel-category">${channelCount} channels</div>
                     </div>
                 `;
+                
+                // Store the category ID for filtering
                 item.onclick = () => {
+                    console.log('Clicked category:', category.name, 'with ID:', category.id);
                     document.querySelectorAll('#categoryList .channel-item').forEach(el => el.classList.remove('active'));
                     item.classList.add('active');
                     renderChannels(category.id);
                 };
+                
                 categoryList.appendChild(item);
             });
         }
@@ -1238,10 +1559,43 @@
             
             let filteredChannels = appState.channels;
             
-            if (categoryFilter) {
-                filteredChannels = appState.channels.filter(ch => 
-                    ch.category === categoryFilter || ch.categoryName === categoryFilter
-                );
+            if (categoryFilter !== null) {
+                console.log('=== FILTERING CHANNELS ===');
+                console.log('Filter value:', categoryFilter);
+                console.log('Filter type:', typeof categoryFilter);
+                
+                // Convert to string for comparison
+                const filterStr = String(categoryFilter);
+                
+                filteredChannels = appState.channels.filter(ch => {
+                    // Check ALL possible category fields
+                    const match1 = String(ch.category_id) === filterStr;
+                    const match2 = String(ch.category) === filterStr;
+                    const match3 = String(ch.category_name) === filterStr;
+                    const match4 = String(ch.categoryName) === filterStr;
+                    
+                    const matches = match1 || match2 || match3 || match4;
+                    
+                    // Debug first match
+                    if (matches) {
+                        console.log('Matched channel:', {
+                            name: ch.name,
+                            category_id: ch.category_id,
+                            category: ch.category,
+                            category_name: ch.category_name,
+                            categoryName: ch.categoryName
+                        });
+                    }
+                    
+                    return matches;
+                });
+                
+                console.log(`Found ${filteredChannels.length} channels for filter "${filterStr}"`);
+            }
+            
+            if (filteredChannels.length === 0) {
+                channelList.innerHTML = '<li style="padding: 20px; color: var(--text-secondary); text-align: center;">No channels in this category</li>';
+                return;
             }
             
             filteredChannels.forEach(channel => {
@@ -1328,6 +1682,11 @@
             }
             
             loadEPGForChannel(channel);
+            
+            // Close mobile menu on mobile devices
+            if (window.innerWidth <= 768) {
+                closeMobileMenu();
+            }
         }
 
         // Load EPG for Channel
@@ -1468,6 +1827,31 @@
 
         function hideLoading() {
             document.getElementById('loadingSpinner').classList.remove('active');
+        }
+
+        // Mobile Menu Functions
+        function toggleMobileMenu() {
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('mobileOverlay');
+            const isOpen = sidebar.classList.contains('mobile-open');
+            
+            if (isOpen) {
+                closeMobileMenu();
+            } else {
+                openMobileMenu();
+            }
+        }
+
+        function openMobileMenu() {
+            document.getElementById('sidebar').classList.add('mobile-open');
+            document.getElementById('mobileOverlay').classList.add('active');
+            document.getElementById('mobileMenuToggle').textContent = '✕';
+        }
+
+        function closeMobileMenu() {
+            document.getElementById('sidebar').classList.remove('mobile-open');
+            document.getElementById('mobileOverlay').classList.remove('active');
+            document.getElementById('mobileMenuToggle').textContent = '☰';
         }
     </script>
 </body>
